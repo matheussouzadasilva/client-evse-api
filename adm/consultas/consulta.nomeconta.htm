@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>EVSE</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/layoutadm.min.css" />
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.min.css"/>
+
+        <script type="text/javascript" src="../../js/scripts.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/popper.min.js" ></script>
+		<script src="../../js/bootstrap.min.js" ></script>
+
+		<script type="text/javascript" src="../../js/jquery.dataTables.min.js"></script>
+
+		<script src="../../js/fontawesome-all.min.js" ></script>
+
+		<!-- TableTools permite exportar para csv, pdf etc-->
+
+		<script type="text/javascript">
+		    document.addEventListener('DOMContentLoaded', function() {
+		    	Util.logado();
+				Conta.listar();    
+		    });
+		</script>
+
+		<noscript>Seu navegador não suporta JavaScript ou mesmo foi desabilitado!</noscript>
+	</head>
+	
+	<body>
+		<header>
+			<div id="headerimg"></div>
+
+	        <nav class="navbar navbar-dark bg-dark navbar-expand-lg " id="menuprincipal">
+	            <a class="navbar-brand" href="../paginas/home.htm" onmouseover="Util.alterbgmenu()">Home</a>
+				<a class="navbar-brand" href="../paginas/cadastros.htm" onmouseover="Util.alterbgmenu(1)">Cadastros</a>
+				<a class="navbar-brand" href="../paginas/consultas.htm" onmouseover="Util.alterbgmenu(2)">Consultas</a>
+				<a class="navbar-brand" href="../formularios/alterar.senha.htm" onmouseover="Util.alterbgmenu(3)">Alterar senha</a>
+				<a class="navbar-brand" href="../formularios/logout.htm" onmouseover="Util.alterbgmenu(5)">Sair</a>
+	        </nav>
+		</header>
+			
+		<div name="conteudo" class="container-fluid">
+			</br>
+			<div class="titulo">Listando as suas últimas 12 contas de energia</div>
+			<table id="tabela01" class="display table table-striped table-condensed table-bordered table-hover" cellspacing="0" width="50%">
+		        <thead>
+		            <tr>
+		            	<th style="width:60px;" class="">A&ccedil;&otilde;es</th>
+		                <th>C&oacute;digo</th>
+		                <th>KW</th>
+		                <th>data vencimento</th>
+		                <th>valor R$</th>
+		            </tr>
+		        </thead>
+		        <tfoot>
+		            <tr>
+		            	<th style="width:60px;" class="">A&ccedil;&otilde;es</th>
+		                <th>C&oacute;digo</th>
+		                <th>KW</th>
+		                <th>dataVencimento</th>
+		                <th>valor R$</th>
+		            </tr>
+		        </tfoot>
+			</table>	
+		</div>
+			
+		<footer></footer>       	
+	</body>
+</html>

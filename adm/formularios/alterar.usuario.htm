@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>EVSE</title>
+        <link rel="stylesheet" type="text/css" href="../../css/layoutadm.min.css" />
+        <script type="text/javascript" src="../../js/scripts.min.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                Util.logado();
+                
+                Util.queryString();
+
+                document.getElementById("codigo").value = location.queryString.id;
+                Usuario.insereDadosUsuarioRetornados(location.queryString.id);
+            });
+        </script>
+    </head>
+	
+    <body>
+        <div id="geral">
+            <div id="cabecalho">
+            </div>
+
+            <header>
+                <nav id="menu_superior">
+                    <a href="../paginas/home.htm">Home</a> ::
+                    <a href="../paginas/cadastros.htm">Cadastros</a> ::
+                    <a href="../paginas/administrar.htm">Administrar</a> ::
+                    <a href="../paginas/consultas.htm">Consultas</a> ::
+                    <a href="logout.htm">Sair</a>
+                </nav>
+            </header>
+
+            <div id="conteudo">
+                <h2 class="titulo">Alterar Dados do Usuario</h2>
+
+                <form class="form" id="frmTorcedor" name="frmTorcedor" >
+                    <table>
+                        <tr>
+                            <td>Nome:</td>
+                            <td>
+                                <input type="text" name="txtNome" id="txtNome" value="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>E-mail:</td>
+                            <td>
+                                <input type="text" name="txtEmail" id="txtEmail" value="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Nova Senha:</td>
+                            <td>
+                                <input type="password" name="txtSenha" id="txtSenha" value="" />
+                            </td>
+                        </tr>  
+
+                        <tr>
+                            <td>Confirmação Nova Senha:</td>
+                            <td>
+                                <input type="password" name="txtConfSenha" id="txtConfSenha" value="" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <input type="hidden" name="codigo" id="codigo" value="" />
+                                <input id="btnAtualizar" name="btnAtualizar" type="button" value="Alterar"  onclick="Usuario.atualizar(frmTorcedor)"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                <div id="mensagem"></div>
+            </div>
+
+            <footer id="rodape">
+            </footer>       	
+        </div>
+    </body>
+
+</html>

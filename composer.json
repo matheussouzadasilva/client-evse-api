@@ -1,0 +1,11 @@
+{
+	"require": {
+        "matthiasmullie/minify": "1.*"
+    },
+	"autoload": {
+		"psr-0": {
+            "client-evse-api/tests": ""
+   		}
+	}
+}
+

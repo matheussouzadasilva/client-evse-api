@@ -1,0 +1,107 @@
+body {
+	background-color:#000000;
+	color:#FFFFFF;
+	width:auto;
+	margin:auto;
+}
+
+div {
+	font-family:"Courier New", Courier, monospace,arial;
+}
+
+.readonly {
+    background-color:#C0C0C0;
+}
+
+#headerimg {
+	height:132px;
+	width:100%;
+	background-image:url(../img/header.jpg);
+}
+
+#conteudo {
+    overflow:auto;
+	background-color:#FFFFFF;
+	color:#000000;
+	text-align:justify;
+}
+
+#conteudo a {
+	color:#000000;
+	text-decoration:none;
+}
+
+#conteudo a:hover {
+	text-decoration:underline;
+}
+
+footer::before {
+    position: absolute;   /* posição absoluta */
+	bottom: 10;   /* Fixa a div no fim da página */
+	width: 100%;   /* Largura estende por toda página da div */
+	height: 200px;   /* Altura da div */
+	height:15px;
+	font-size:14px;
+	text-align:center;
+	color:#3399FF;
+	content: "Matheus Souza da Silva";
+}
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+tr th {
+	/*muda para branco a cor da fonte para todos elementos tr que tenham um elemento th
+	, em outras palavras deixa em cor branco o cabeçalho e rodape da tabela*/
+	color:#000000; 
+}
+
+.table {
+	overflow:hidden;
+	margin-left: auto ;  
+	margin-right: auto ;
+	color:#000000;
+	table-layout: fixed;
+	word-wrap: break-word;
+	margin: 20px;
+}
+
+.dataTables_info{
+	margin-left: 40px;
+}
+
+.table th {
+   text-align: center;   
+}
+
+.table td {
+   text-align: left;   
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #00FF00;
+}
+
+.acao{
+	width: 50%;
+}
+
+.lista {
+	text-align:center;
+}
+
+.titulo {
+	text-align:center;
+	color:#000000;
+	font-weight:bold;
+}
+
+#form, .form {
+	display: table;
+	margin: 0 auto;
+}
+
+caption { 
+    text-align: center;
+}

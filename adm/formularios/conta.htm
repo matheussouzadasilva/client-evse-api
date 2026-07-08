@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>EVSE - Conta de energia</title>
+        <link rel="stylesheet" type="text/css" href="../../css/layoutadm.min.css" />
+
+        <script type="text/javascript" src="../../js/scripts.min.js"></script>
+        
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                Util.logado();
+                
+                Util.queryString();
+
+                if (location.queryString.op == 1) {
+                    document.getElementById("titulo").innerHTML = "Alterar dados da conta de energia";
+
+                    document.getElementById("btnAcaoVoltar").classList.add('btn-secondary');
+                    document.getElementById("btnAcaoVoltar").innerHTML = "Voltar";
+                    document.getElementById("btnAcaoVoltar").setAttribute("onclick", "Util.goBack('../consultas/consulta.nomeconta.htm')");
+
+                    document.getElementById("btnAcao").classList.add('btn-success');
+                    document.getElementById("btnAcao").innerHTML = "Alterar";
+                    document.getElementById("btnAcao").setAttribute("onclick", "Conta.atualizar(frmConta)"); 
+
+                    Conta.detalhe(location.queryString.codigo);
+                } else if (location.queryString.op == 2) {
+                    document.getElementById("titulo").innerHTML = "Detalhes da conta de energia";
+                    document.getElementById("btnAcao").classList.add('btn-secondary');
+                    document.getElementById("btnAcao").innerHTML = "Voltar";
+                    document.getElementById("btnAcao").setAttribute("onclick", "Util.goBack('../consultas/consulta.nomeconta.htm')");
+
+                    document.getElementById("divcodigo").style.display = "block";
+                    Conta.detalhe(location.queryString.codigo);
+
+                    document.getElementById("codigo").setAttribute("readonly", "true"); 
+                    document.getElementById("codigo").classList.add('readonly');
+
+                    document.getElementById("txtDataVencimento").setAttribute("readonly", "true"); 
+                    document.getElementById("txtDataVencimento").classList.add('readonly');
+                } else {
+                    document.getElementById("titulo").innerHTML = "Cadastro de conta de energia";
+
+                    document.getElementById("btnAcaoVoltar").classList.add('btn-secondary');
+                    document.getElementById("btnAcaoVoltar").innerHTML = "Voltar";
+                    document.getElementById("btnAcaoVoltar").setAttribute("onclick", "Util.goBack('../paginas/cadastros.htm')");
+
+                    document.getElementById("btnAcao").classList.add('btn-success');
+                    document.getElementById("btnAcao").innerHTML = "Cadastrar";
+                    document.getElementById("btnAcao").setAttribute("onclick", "Conta.cadastrar(frmConta)"); 
+                }
+
+            });
+        </script>
+
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+        
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../js/popper.min.js" ></script>
+        <script src="../../js/bootstrap.min.js" ></script>
+
+        <noscript>Seu navegador não suporta JavaScript ou mesmo foi desabilitado!</noscript>	
+    </head>
+
+    <body>
+        <header>
+            <div id="headerimg"></div>
+
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg " id="menuprincipal">
+                <a class="navbar-brand" href="../paginas/home.htm" onmouseover="Util.alterbgmenu()">Home</a>
+                <a class="navbar-brand" href="../paginas/cadastros.htm" onmouseover="Util.alterbgmenu(1)">Cadastros</a>
+                <a class="navbar-brand" href="../paginas/consultas.htm" onmouseover="Util.alterbgmenu(2)">Consultas</a>
+                <a class="navbar-brand" href="../formularios/alterar.senha.htm" onmouseover="Util.alterbgmenu(3)">Alterar senha</a>
+                <a class="navbar-brand" href="../formularios/logout.htm" onmouseover="Util.alterbgmenu(5)">Sair</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <div class="col-sm-6 pull-left"> 
+                <h2 class="titulo" id="titulo"></h2>
+
+                <form id="frmConta" name="frmConta" class="form-horizontal">
+                    <div class="form-group" style="display: none;" id="divcodigo">
+                        <label for="codigo">Codigo</label> 
+                        <input type="text" class="form-control" name="codigo" id="codigo" />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtDataVencimento">Data Vencimento</label>
+                      <input type="date" class="form-control" name="txtDataVencimento" id="txtDataVencimento" />
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="txtValor">Valor</label>
+                      <input type="text" class="form-control" name="txtValor" id="txtValor" />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="txtKw">Kw</label>
+                      <input type="text" class="form-control" name="txtKw" id="txtKw" />
+                    </div>
+
+                    </br>
+                    
+                    <div class="form-group">
+                        <button id="btnAcaoVoltar" name="btnAcaoVoltar" type="button" class="btn "></button>
+
+                      <button id="btnAcao" name="btnAcao" type="button" class="btn "></button>
+                    </div>
+                </form>
+
+                <div id="mensagem" name="mensagem"></div>
+            </div>
+        </div>
+
+        <footer></footer>
+    </body>
+</html>
