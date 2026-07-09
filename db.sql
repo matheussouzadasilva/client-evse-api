@@ -131,11 +131,11 @@ DROP TABLE IF EXISTS `produto`;
 CREATE TABLE `produto` (
   `id_produto` int unsigned NOT NULL COMMENT 'pk do produto',
   `nome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'nome produto ex.: fio 6mm, placa solar 470w',
-  `descricao` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'descrição do produto ex.: preço do metro do fio 6mm, 1 modulo de placa solar 470w com 22% de efiencia e 25 anos de garantia.',
+  `descricao` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'descrição do produto ex.: preço do metro do fio 6mm, 1 modulo de placa solar 470w com 22% de eficiencia e 25 anos de garantia.',
   `preco` float NOT NULL COMMENT 'preco do produto',
   `tipo_produto_id_tipo_produto` int NOT NULL COMMENT 'codigo que informa qual o tipo do produto, se é uma placa solar, inversor, fio etc.',
   `potencia` int unsigned DEFAULT NULL COMMENT 'potencia do produto caso tenha',
-  PRIMARY KEY (`id_produto`,`tipo_produto_id_tipo_produto`),
+  PRIMARY KEY (`id_produto`),
   KEY `fk_produto_tipo_produto1_idx` (`tipo_produto_id_tipo_produto`),
   CONSTRAINT `fk_produto_tipo_produto1` FOREIGN KEY (`tipo_produto_id_tipo_produto`) REFERENCES `tipo_produto` (`id_tipo_produto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -175,7 +175,7 @@ CREATE TABLE `usuario_carrinho_produto` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQUE_usuario_carrinho_produto` (`usuario_id_usuario`,`produto_id_produto`),
-  KEY `fk_usuario_x_produto_produto1_idx` (`produto_id_produto`) /*!80000 INVISIBLE */,
+  KEY `fk_usuario_x_produto_produto1_idx` (`produto_id_produto`),
   KEY `fk_usuario_x_produto_usuario1_idx` (`usuario_id_usuario`),
   CONSTRAINT `fk_usuario_x_produto_produto1` FOREIGN KEY (`produto_id_produto`) REFERENCES `produto` (`id_produto`),
   CONSTRAINT `fk_usuario_x_produto_usuario1` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `users` (`id`)

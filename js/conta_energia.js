@@ -41,67 +41,106 @@ class Conta
 
     static listar()
     {
-        const FROM_PATTERN = 'YYYY-MM-DD';
-        const TO_PATTERN   = 'DD/MM/YYYY';
-
         var jwtoken,codigo,detalhes,alterar,excluir;
 
         jwtoken = Util.getCookie('token');
 
-        var table = jQuery('#tabela01').dataTable( {
-        processing: true,
-        serverSide: true,
-        dom: "Bfrtip",        
-        ajax : {
-         "url": 'http://localhost:9999/api/v1/contas_energia',
-         "dataType": 'json',
-         "type": "GET",
-         "beforeSend": function(xhr){
-            xhr.setRequestHeader('Authorization', 'Bearer ' + jwtoken);
-         }
-        },
-        columns: [
-        {
-        "class": "details-control",
-        "orderable": false,
-        "searchable": false,
-        "searchable": false,
-        "data": null, 
-        render: function ( data, type, row ) {
+        console.log("antes do datatable");
 
-            codigo = data.id_conta_energia;
+        jQuery('#tabela01').DataTable({
 
-            // Combine the first and last names into a single table field
-            detalhes = "<a href=\"../formularios/conta.htm?op=2&codigo="
-            + codigo
-            + "\"><i class='fa-solid fa-info'></i></a>";
+            processing: true,
+            serverSide: true,
 
-            alterar = "<span>  </span><a href=\"../formularios/conta.htm?op=1&codigo="
-            + codigo
-            + "\"><i class='fa-solid fa-edit'></i></a>";
+            dom: "Bfrtip",
 
-            excluir = "<span>  </span><a href=\"javascript:Conta.confirmar("
-            + codigo
-            + ")\"><i class='fa-solid fa-trash'></i></a>";
+            ajax: {
+                url: 'http://localhost:9999/api/v1/contas_energia',
+                dataType: 'json',
+                type: 'GET',
 
-            //console.log(row);
-            return detalhes+alterar+excluir;
-        }, 
-        "defaultContent": "",
-        },
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(
+                        'Authorization',
+                        'Bearer ' + jwtoken
+                    );
+                },
 
-        { "data": "id_conta_energia" , name: "id_conta_energia", "width": "60px" },
-        { "data": "kw" },
-        { "data": "dataVencimento" },
-        { "data": "valor" },
+                dataSrc: function(json){
+                    console.log("DATA RECEBIDO:", json);
 
-        ],
-        select: true,
-        'language': {
-        'url': '../../js/Portuguese-Brasil.json'
-        }
+                    return json.data; // <-- importante
+                },
+
+                error: function(xhr, status, error){
+                    console.log("ERRO API:", xhr, status, error);
+                }
+            },
+
+
+            columns: [
+
+                {
+                    className: "details-control",
+                    orderable: false,
+                    searchable: false,
+                    data: null,
+
+                    render: function(data, type, row){
+
+                        codigo = row.id_conta_energia;
+
+                        detalhes =
+                        "<a href=\"../formularios/conta.htm?op=2&codigo="
+                        + codigo +
+                        "\"><i class='fa-solid fa-info'></i></a>";
+
+                        alterar =
+                        "<a href=\"../formularios/conta.htm?op=1&codigo="
+                        + codigo +
+                        "\"><i class='fa-solid fa-edit'></i></a>";
+
+                        excluir =
+                        "<a href=\"javascript:Conta.confirmar("
+                        + codigo +
+                        ")\"><i class='fa-solid fa-trash'></i></a>";
+
+                        return detalhes + alterar + excluir;
+                    }
+                },
+
+
+                {
+                    data: "id_conta_energia",
+                    name: "id_conta_energia",
+                    width:"60px"
+                },
+
+                {
+                    data:"kw"
+                },
+
+                {
+                    data:"dataVencimento"
+                },
+
+                {
+                    data:"valor"
+                }
+
+            ],
+
+
+            select:true,
+
+            language:{
+                url:'../../js/Portuguese-Brasil.json'
+            }
 
         });
+
+
+        console.log("depois do datatable");
     }
 
 
